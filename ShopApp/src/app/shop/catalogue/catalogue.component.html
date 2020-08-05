@@ -1,0 +1,133 @@
+<div class="bg-light py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mb-0"><a routerLink="/home">Home</a> <span class="mx-2 mb-0">/</span> <strong
+                    class="text-black">Shop</strong></div>
+        </div>
+    </div>
+</div>
+
+<div class="site-section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md-9 order-2">
+                <div class="row">
+                    <div class="col-md-12 mb-2">
+                        <div class="float-md-left">
+                            <h2 class="text-black h5">Shop All</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <div ngbDropdown class="ngbDropdown mr-1 ml-md-auto">
+                      <select class="form-control-sm" [value]="productsPerPage" (change)="changePerSize($event.target.value)">
+                        <option  value="2">2 Per Page</option>
+                        <option  value="3">3 Per Page</option>
+                        <option  value="4">4 Per Page</option>
+                        <option  value="6">6 Per Page</option>
+                        <option  value="8">8 Per Page</option>
+                      </select>
+                    </div>
+                  </div>
+                <div class="row mb-5 pt-5">
+                    <div *ngFor="let product of products" class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+                        <div class="block-4 text-center border">
+                            <figure class="block-4-image">
+                                <img src="{{product.imageUrl}}" alt="{{product.name}}" class="img-fluid">
+
+                            </figure>
+                            <div class="block-4-text p-1">
+                                <h5><a style="color: dimgray;">{{product.name}}</a></h5>
+                                
+                                <p class="text-primary font-weight-bold">{{product.price | currency:USD}}</p>
+                            </div>
+                            <div class="text-center pb-3">
+                                <button routerLink="/details" (click)="displayDetails(product)" class="btn btn-outline-primary btn-sm m-2" style="color: cornsilk; background-color:cornflowerblue">
+                                    Details
+                                </button>
+                                <button (click)="addProductToCart(product)" class="btn btn-outline-primary btn-sm m-2" style="color: cornsilk; background-color:cornflowerblue">
+                                    Add To Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col ">
+                        <div class="btn-group">
+                            <button *ngFor="let page of pageNumbers" 
+                            (click)="changePage(page)"
+                             class="btn btn-outline-primary m-1"
+                             [class.active]="page==selectedPage">{{page}}</button>        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 order-1 mb-5 mb-md-0">
+                <app-cart-summary></app-cart-summary>
+                <div class="border p-4 rounded mb-4">
+                    
+                    <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
+                    <ul class="list-unstyled mb-0">
+                        <a routerLink="#" (click)="changeCategory()" class="d-flex"><span>All</span>
+                            <span class="text-black ml-auto"></span></a>
+                        <li *ngFor="let category of categories" class="mb-1">
+                            <a routerLink="#" (click)="changeCategory(category)" class="d-flex">
+                                <span>{{category.name}}</span>
+                                <span class="text-black ml-auto"></span></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="border p-4 rounded mb-4">
+                    <div class="mb-4">
+                        <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Price</h3>
+                        <div id="slider-range" class="border-primary"></div>
+                        <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white"
+                            disabled="" />
+                    </div>
+
+                    <div class="mb-4">
+                        <h3 class="mb-3 h6 text-uppercase text-black d-block">Size</h3>
+                        <label for="s_sm" class="d-flex">
+                            <input type="checkbox" id="s_sm" class="mr-2 mt-1"> <span class="text-black">Small
+                                (2,319)</span>
+                        </label>
+                        <label for="s_md" class="d-flex">
+                            <input type="checkbox" id="s_md" class="mr-2 mt-1"> <span class="text-black">Medium
+                                (1,282)</span>
+                        </label>
+                        <label for="s_lg" class="d-flex">
+                            <input type="checkbox" id="s_lg" class="mr-2 mt-1"> <span class="text-black">Large
+                                (1,392)</span>
+                        </label>
+                    </div>
+
+                    <div class="mb-4">
+                        <h3 class="mb-3 h6 text-uppercase text-black d-block">Color</h3>
+                        <a href="#" class="d-flex color-item align-items-center">
+                            <span class="bg-danger color d-inline-block rounded-circle mr-2"></span> <span
+                                class="text-black">Red
+                                (2,429)</span>
+                        </a>
+                        <a href="#" class="d-flex color-item align-items-center">
+                            <span class="bg-success color d-inline-block rounded-circle mr-2"></span> <span
+                                class="text-black">Green
+                                (2,298)</span>
+                        </a>
+                        <a href="#" class="d-flex color-item align-items-center">
+                            <span class="bg-info color d-inline-block rounded-circle mr-2"></span> <span
+                                class="text-black">Blue
+                                (1,075)</span>
+                        </a>
+                        <a href="#" class="d-flex color-item align-items-center">
+                            <span class="bg-primary color d-inline-block rounded-circle mr-2"></span> <span
+                                class="text-black">Purple
+                                (1,075)</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

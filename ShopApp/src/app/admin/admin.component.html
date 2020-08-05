@@ -1,0 +1,17 @@
+<div class="container p-5">
+    <div class="row">
+        <div class="col bg-primary p-2 text-white">
+            Admin Panel
+        </div>
+    </div>
+    <div class="row p-2">
+        <div class="col-3">
+            <button routerLinkActive="active" routerLink="/admin/main/products" class="btn btn-outline-info btn-block">Products</button>
+            <button routerLinkActive="active" routerLink="/admin/main/categories" class="btn btn-outline-info btn-block">Categories</button>
+            <button (click)="logout()" class="btn btn-outline-danger btn-block">Logout</button>
+        </div>
+        <div class="col-9">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

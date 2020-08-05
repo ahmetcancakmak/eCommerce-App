@@ -1,0 +1,51 @@
+
+<div class="mb-5">
+  <div *ngIf="orderSent" class="m-2 text-center">
+    <div class="site-section">
+
+        <div class="row">
+          <div class="col-md-12">
+            <h2 class="display-3 text-black">Thank you!</h2>
+            <p class="lead mb-5">You order was successfuly completed.</p>
+            <p><a routerLink="/catalogue" class="btn btn-sm height-auto px-4 py-3 btn-primary">Back to shop</a></p>
+          </div>
+        </div>
+
+    </div>
+  </div>
+
+  <div class="container">
+    <form *ngIf="!orderSent" #form="ngForm" (ngSubmit)="submitOrder(form)" class="m-4" style="border-style: groove; padding: 30px;">
+      <div class="form-group">
+        <label>Name</label>
+        <input class="form-control" #name="ngModel" name="name" [(ngModel)]="order.name" required>
+        <span *ngIf="submitted && name.invalid" class="text-danger">Please enter your name</span>
+      </div>
+      <div class="form-group">
+        <label>Address</label>
+        <input class="form-control" #address="ngModel" name="address" [(ngModel)]="order.address" required>
+        <span *ngIf="submitted && address.invalid" class="text-danger">Please enter your address information</span>
+      </div>
+      <div class="form-group">
+        <label>City</label>
+        <input class="form-control" #city="ngModel" name="city" [(ngModel)]="order.city" required>
+        <span *ngIf="submitted && city.invalid" class="text-danger">Please enter your city information</span>
+      </div>
+      <div class="form-group">
+        <label>Phone</label>
+        <input class="form-control" #phone="ngModel" name="phone" [(ngModel)]="order.phone" required>
+        <span *ngIf="submitted && phone.invalid" class="text-danger">Please enter your phone number</span>
+      </div>
+      <div class="form-group">
+        <label>E-mail</label>
+        <input class="form-control" #email="ngModel" name="email" [(ngModel)]="order.email" required>
+        <span *ngIf="submitted && email.invalid" class="text-danger">Please enter your email</span>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Complete Order</button>
+        <button type="submit" routerLink="/shop" class="btn btn-primary ml-2">Continue Shoppping</button>
+      </div>
+    </form>
+  </div>
+</div>
+
